@@ -170,7 +170,7 @@
         "stac_extensions": {
           "type": "array",
           "contains": {
-            "const": "https://stac-extensions.github.io/template/v1.0.0/schema.json"
+            "const": "https://raw.githubusercontent.com/tjellicoe-tpzuk/provenance/refs/heads/feature/add-provenance-extension/json-schema/schema.json"
           }
         }
       }
