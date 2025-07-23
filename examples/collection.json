@@ -2,7 +2,7 @@
   "stac_version": "1.0.0",
   "stac_extensions": [
     "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json",
-    "https://stac-extensions.github.io/template/v1.0.0/schema.json"
+    "https://stac-extensions.github.io/provenance/v1.0.0/schema.json"
   ],
   "type": "Collection",
   "id": "collection",
@@ -29,17 +29,46 @@
       ]
     }
   },
-  "template:new_field": "test",
-  "template:xyz": {
-    "x": 1,
-    "y": 2,
-    "z": 3
-  },
-  "template:another_one": [
-    1,
-    2,
-    3
+  "provenance:date_generated": "2020-12-11T22:34:00Z",
+  "provenance:workflow_used_id": "test-workflow",
+  "provenance:workflow_platform": "tjellicoe",
+  "provenance:workflow_used_version": "1.0.0",
+  "provenance:workflow_used_origin": "https://example.com/workflows/test-workflow",
+  "provenance:workflow_inputs": [
+    {
+      "id": "input-1",
+      "type": "string",
+      "value": "input value",
+      "href": "https://example.com/inputs/input-1",
+      "details": "N/A"
+    },
+    {
+      "id": "input-2",
+      "type": "integer",
+      "value": 42,
+      "href": "https://example.com/inputs/input-2",
+      "details": "N/A"
+    },
+    {
+      "id": "input-2",
+      "type": "COG",
+      "value": null,
+      "href": "https://example.com/inputs/my-cog.tif",
+      "details": "This is a COG input"
+    }
   ],
+  "provenance:workflow_execution_duration": "2400",
+  "provenance:workflow_step_id": "test-workflow",
+  "provenance:workflow_owner_contact": {
+    "name": "T Jellicoe",
+    "email_address": "tjellicoe@example.com",
+    "organization": "Example Organization"
+  },
+  "provenance:workflow_runner_contact": {
+    "name": "E Xample",
+    "email_address": "example@example.com",
+    "organization": "Another Organization"
+  },
   "assets": {
     "example": {
       "href": "https://example.com/examples/file.xyz",
