@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://stac-extensions.github.io/provenance/v1.0.0/schema.json#",
+  "$id": "https://raw.githubusercontent.com/tjellicoe-tpzuk/provenance/refs/heads/feature/add-provenance-extension/json-schema/schema.json",
   "title": "Provenance Extension",
   "description": "STAC Provenance Extension for STAC Items and STAC Collections.",
   "oneOf": [
