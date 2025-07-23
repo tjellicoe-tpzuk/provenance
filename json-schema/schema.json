@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://stac-extensions.github.io/template/v1.0.0/schema.json#",
-  "title": "Template Extension",
-  "description": "STAC Template Extension for STAC Items and STAC Collections.",
+  "$id": "https://stac-extensions.github.io/provenance/v1.0.0/schema.json#",
+  "title": "Provenance Extension",
+  "description": "STAC Provenance Extension for STAC Items and STAC Collections.",
   "oneOf": [
     {
       "$comment": "This is the schema for STAC Items. Remove this object if this extension only applies to Collections.",
@@ -26,7 +26,16 @@
                 {
                   "$comment": "Require fields here for Item Properties.",
                   "required": [
-                    "template:new_field"
+                    "provenance:date_generated",
+                    "provenance:workflow_used_id",
+                    "provenance:workflow_platform",
+                    "provenance:workflow_used_version",
+                    "provenance:workflow_used_origin",
+                    "provenance:workflow_inputs",
+                    "provenance:workflow_execution_duration",
+                    "provenance:workflow_step_id",
+                    "provenance:workflow_owner_contact",
+                    "provenance:workflow_runner_contact"
                   ]
                 },
                 {
@@ -70,7 +79,16 @@
             {
               "$comment": "Require fields here for Collections (top-level).",
               "required": [
-                "template:new_field"
+                "provenance:date_generated",
+                "provenance:workflow_used_id",
+                "provenance:workflow_platform",
+                "provenance:workflow_used_version",
+                "provenance:workflow_used_origin",
+                "provenance:workflow_inputs",
+                "provenance:workflow_execution_duration",
+                "provenance:workflow_step_id",
+                "provenance:workflow_owner_contact",
+                "provenance:workflow_runner_contact"
               ]
             },
             {
@@ -160,50 +178,146 @@
     "require_any_field": {
       "$comment": "Please list all fields here so that we can force the existence of one of them in other parts of the schemas.",
       "anyOf": [
-        {"required": ["template:new_field"]},
-        {"required": ["template:xyz"]},
-        {"required": ["template:another_one"]}
+        {
+          "required": [
+            "provenance:date_generated"
+          ]
+        },
+        {
+          "required": [
+            "provenance:workflow_used_id"
+          ]
+        },
+        {
+          "required": [
+            "provenance:workflow_platform"
+          ]
+        },
+        {
+          "required": [
+            "provenance:workflow_used_version"
+          ]
+        },
+        {
+          "required": [
+            "provenance:workflow_used_origin"
+          ]
+        },
+        {
+          "required": [
+            "provenance:workflow_inputs"
+          ]
+        },
+        {
+          "required": [
+            "provenance:workflow_execution_duration"
+          ]
+        },
+        {
+          "required": [
+            "provenance:workflow_step_id"
+          ]
+        },
+        {
+          "required": [
+            "provenance:workflow_owner_contact"
+          ]
+        },
+        {
+          "required": [
+            "provenance:workflow_runner_contact"
+          ]
+        }
       ]
     },
     "fields": {
       "$comment": "Add your new fields here. Don't require them here, do that above in the corresponding schema.",
       "type": "object",
       "properties": {
-        "template:new_field": {
+        "provenance:date_generated": {
           "type": "string"
         },
-        "template:xyz": {
-          "type": "object",
-          "required": [
-            "x",
-            "y",
-            "z"
-          ],
-          "properties": {
-            "x": {
-              "type": "number"
-            },
-            "y": {
-              "type": "number"
-            },
-            "z": {
-              "type": "number"
-            }
-          }
+        "provenance:workflow_used_id": {
+          "type": "string"
         },
-        "template:another_one": {
+        "provenance:workflow_platform": {
+          "type": "string"
+        },
+        "provenance:workflow_used_version": {
+          "type": "string"
+        },
+        "provenance:workflow_used_origin": {
+          "type": "string"
+        },
+        "provenance:workflow_inputs": {
           "type": "array",
           "items": {
-            "type": "number"
-          }
+            "type": "object",
+            "required": [
+              "id",
+              "type",
+              "value",
+              "href",
+              "details"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "value": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "href": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+              },
+              "details": {
+                "type": "string"
+              }
+            }
+          },
+          "provenance:workflow_execution_duration": {
+            "type": "string"
+          },
+          "provenance:workflow_step_id": {
+            "type": "string"
+          },
+          "provenance:workflow_owner_contact": {
+            "type": "string"
+          },
+          "provenance:workflow_runner_contact": {
+            "type": "object",
+            "required": [
+              "name",
+              "email",
+              "organization"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "organization": {
+                "type": "string"
+              }
+            }
+          },
+          "patternProperties": {
+            "^(?!provenance:)": {}
+          },
+          "additionalProperties": false
         }
-      },
-      "patternProperties": {
-        "^(?!template:)": {
-          "$comment": "Above, change `template` to the prefix of this extension"
-        }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }
